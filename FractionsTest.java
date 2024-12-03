@@ -3,7 +3,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FractionsTest {
-
     @Test
     public void test01() {
         assertEquals("Un terç", Fractions.toWords("1/3"));
