@@ -9,7 +9,7 @@ public class Fractions {
         String res;
         if (num >= denom) {
             int resto = num / denom;
-            int fract = parteFraccional(num, denom);
+            int fract = partFranctional(num, denom);
             if (fract == 0) {
                 return numTillM(resto);
             }
@@ -18,9 +18,9 @@ public class Fractions {
             if (num < 1) {
                 res = "zero";
             } else if (num == 1 && denom <= 19) {
-                res = numTill999(num) + " " + denomTill20(denom);
+                res = numTill999(num) + " " + denominatorUntill20(denom);
             } else if (denom <= 19) {
-                res = numTill999(num) + " " + denomPluralTill20(denom);
+                res = numTill999(num) + " " + denominatorPluralUnTill20(denom);
             } else if (denom <= 99) {
                 res = numTill999(num) + " " + crear99s(num, denom);
             } else if (denom <= 999) {
@@ -35,8 +35,8 @@ public class Fractions {
         }
         return res.substring(0, 1).toUpperCase() + res.substring(1).toLowerCase();
     }
-    public static String denomTill20(int denom) {
-        switch (denom) {
+    public static String denominatorUntill20(int denominator) {
+        switch (denominator) {
             case 2:
                 return "mig";
             case 3:
@@ -76,8 +76,8 @@ public class Fractions {
         }
         return "";
     }
-    public static String denomPluralTill20(int denom) {
-        switch (denom) {
+    public static String denominatorPluralUnTill20(int denominator) {
+        switch (denominator) {
             case 2:
                 return "mitjos";
             case 3:
@@ -117,7 +117,7 @@ public class Fractions {
         }
         return "";
     }
-    public static String numTill20(int num) {
+    public static String numUntill20(int num) {
         switch (num) {
             case 1:
                 return "Un";
@@ -160,7 +160,7 @@ public class Fractions {
         }
         return "";
     }
-    public static String numDecenes(int num) {
+    public static String numTens(int num) {
         switch (num) {
             case 2:
                 return "Vint";
@@ -183,8 +183,8 @@ public class Fractions {
         }
         return "";
     }
-    public static String denomDecenes(int denom) {
-        switch (denom) {
+    public static String DenominatorTens(int denominator) {
+        switch (denominator) {
             case 2:
                 return "vintè";
             case 3:
@@ -207,9 +207,8 @@ public class Fractions {
         return "";
     }
 
-    //String de denominadores (decenes) plural
-    public static String denomDecenesPlural(int denom) {
-        switch (denom) {
+    public static String denominadorHundredsPlural(int denominator) {
+        switch (denominator) {
             case 2:
                 return "vint";
             case 3:
@@ -231,8 +230,8 @@ public class Fractions {
         }
         return "";
     }
-    public static String residuoDecenesSingular(int residuo) {
-        switch (residuo) {
+    public static String remainderTensSingular(int residue) {
+        switch (residue) {
             case 1:
                 return "unè";
             case 2:
@@ -254,8 +253,8 @@ public class Fractions {
         }
         return "";
     }
-    public static String residuoDecenesPlural(int residuo) {
-        switch (residuo) {
+    public static String residueDesenesPlural(int residue) {
+        switch (residue) {
             case 1:
                 return "unens";
             case 2:
@@ -277,7 +276,7 @@ public class Fractions {
         }
         return "";
     }
-    public static String numUnitats(int num) {
+    public static String numUnits(int num) {
         switch (num) {
             case 1:
                 return "u";
@@ -304,60 +303,60 @@ public class Fractions {
         if (num == 1) {
             return "Cent";
         }
-        return numUnitats(num) + "-cents";
+        return numUnits(num) + "-cents";
     }
     public static String numMilesimas(int num) {
         if (num == 1) {
             return "Mil";
         }
-        return numUnitats(num) + "mil";
+        return numUnits(num) + "mil";
     }
     public static String numMilionesimas(int num) {
         if (num == 1) {
             return "Milió";
         }
-        return numUnitats(num) + "milio";
+        return numUnits(num) + "milio";
     }
-    public static String numsEsims(int num, int denom) {
+    public static String numsEsims(int num, int denominator) {
         if (num == 0) return "";
-        if (denom <= 999) { // cienes
-            if (num == 1 && denom % 10 == 0 && denom % 100 == 0) return numCentenas(num).toLowerCase() + "èsim";
+        if (denominator <= 999) {
+            if (num == 1 && denominator % 10 == 0 && denominator % 100 == 0) return numCentenas(num).toLowerCase() + "èsim";
             return numCentenas(num).toLowerCase();
-        } else if (denom <= 9999) { // miles
-            int milesimas = denom / 1_000;
-            if (milesimas == 1 && denom % 10 == 0 && denom % 100 == 0 && denom % 1000 == 0) {
+        } else if (denominator <= 9999) { // miles
+            int milesimas = denominator / 1_000;
+            if (milesimas == 1 && denominator % 10 == 0 && denominator % 100 == 0 && denominator % 1000 == 0) {
                 String sufijo = "·lèsim";
                 if (num > 1) sufijo += "s";
                 return numMilesimas(milesimas).toLowerCase() + sufijo;
             }
             return numMilesimas(milesimas).toLowerCase();
-        } else if (denom <= 99999) { // diezmiles
-            int milesimas10 = denom / 10_000;
-            int milesimas = (denom % 10_000) / 1_000;
+        } else if (denominator <= 99999) { // diezmiles
+            int milesimas10 = denominator / 10_000;
+            int milesimas = (denominator % 10_000) / 1_000;
             int mil = (milesimas10 * 10) + milesimas;
-            if (milesimas10 == 1 && denom % 10 == 0 && denom % 100 == 0 && denom % 1_000 == 0 && denom % 10_000 == 0) {
+            if (milesimas10 == 1 && denominator % 10 == 0 && denominator % 100 == 0 && denominator % 1_000 == 0 && denominator % 10_000 == 0) {
                 String sufijo = "·lèsim";
                 if (num > 1) sufijo += "s";
                 return numTill99(mil) + " mil" + sufijo;
             }
             return numTill99(mil) + " mil";
-        } else if (denom <= 999999) { // cienmiles
-            int milesimas100 = denom / 100_000;
-            int milesimas10 = (denom % 100_000) / 10_000;
-            int milesimas = (denom % 10_000) / 1_000;
+        } else if (denominator <= 999999) { // cienmiles
+            int milesimas100 = denominator / 100_000;
+            int milesimas10 = (denominator % 100_000) / 10_000;
+            int milesimas = (denominator % 10_000) / 1_000;
             int mil100 = (milesimas100 * 100) + (milesimas10 * 10) + milesimas;
-            if (milesimas100 == 1 && denom % 10 == 0 && denom % 100 == 0 && denom % 1_000 == 0 && denom % 10_000 == 0 && denom % 100_000 == 0) {
+            if (milesimas100 == 1 && denominator % 10 == 0 && denominator % 100 == 0 && denominator % 1_000 == 0 && denominator % 10_000 == 0 && denominator % 100_000 == 0) {
                 String sufijo = "·lèsim";
                 if (num > 1) sufijo += "s";
                 return numTill999(mil100) + " mil" + sufijo;
             }
             return numTill999(mil100) + " mil";
-        } else if (denom <= 9999999) { // millones
-            int milionesimas = denom / 1_000_000;
-            int milesimas100 = (denom % 1_000_000) / 100_000;
-            int milesimas10 = (denom % 100_000) / 10_000;
-            int milesimas = (denom % 10_000) / 1_000;
-            if (milesimas100 == 0 && milesimas10 == 0 && milesimas == 0 && denom % 10 == 0 && denom % 100 == 0 && denom % 1_000 == 0 && denom % 10_000 == 0 && denom % 100_000 == 0) {
+        } else if (denominator <= 9999999) { // millones
+            int milionesimas = denominator / 1_000_000;
+            int milesimas100 = (denominator % 1_000_000) / 100_000;
+            int milesimas10 = (denominator % 100_000) / 10_000;
+            int milesimas = (denominator % 10_000) / 1_000;
+            if (milesimas100 == 0 && milesimas10 == 0 && milesimas == 0 && denominator % 10 == 0 && denominator % 100 == 0 && denominator % 1_000 == 0 && denominator % 10_000 == 0 && denominator % 100_000 == 0) {
                 String sufijo = "èsim";
                 if (num > 1) sufijo += "s";
                 if (milionesimas == 1) return "milion" + sufijo;
@@ -365,28 +364,28 @@ public class Fractions {
             }
             if (milionesimas == 1) return "milió";
             return numTill999(milionesimas) + " milions";
-        } else if (denom <= 99999999) { //diez millones
-            int milionesimas10 = denom / 10_000_000;
-            int milionesimas = (denom % 10_000_000) / 1_000_000;
-            int milesimas100 = (denom % 1_000_000) / 100_000;
-            int milesimas10 = (denom % 100_000) / 10_000;
-            int milesimas = (denom % 10_000) / 1_000;
+        } else if (denominator <= 99999999) {
+            int milionesimas10 = denominator / 10_000_000;
+            int milionesimas = (denominator % 10_000_000) / 1_000_000;
+            int milesimas100 = (denominator % 1_000_000) / 100_000;
+            int milesimas10 = (denominator % 100_000) / 10_000;
+            int milesimas = (denominator % 10_000) / 1_000;
             int mil100 = (milionesimas10 * 10) + milionesimas;
-            if (milionesimas == 0 && milesimas100 == 0 && milesimas10 == 0 && milesimas == 0 && denom % 10 == 0 && denom % 100 == 0 && denom % 1_000 == 0 && denom % 10_000 == 0 && denom % 100_000 == 0) {
+            if (milionesimas == 0 && milesimas100 == 0 && milesimas10 == 0 && milesimas == 0 && denominator % 10 == 0 && denominator % 100 == 0 && denominator % 1_000 == 0 && denominator % 10_000 == 0 && denominator % 100_000 == 0) {
                 String sufijo = "èsim";
                 if (num > 1) sufijo += "s";
                 return numTill999(mil100) + " milion" + sufijo;
             }
             return numTill999(mil100) + " milions";
-        } else if (denom <= 999999999) { //cien millones
-            int milionesimas100 = denom / 100_000_000;
-            int milionesimas10 = (denom % 100_000_000) / 10_000_000;
-            int milionesimas = (denom % 10_000_000) / 1_000_000;
-            int milesimas100 = (denom % 1_000_000) / 100_000;
-            int milesimas10 = (denom % 100_000) / 10_000;
-            int milesimas = (denom % 10_000) / 1_000;
+        } else if (denominator <= 999999999) {
+            int milionesimas100 = denominator / 100_000_000;
+            int milionesimas10 = (denominator % 100_000_000) / 10_000_000;
+            int milionesimas = (denominator % 10_000_000) / 1_000_000;
+            int milesimas100 = (denominator % 1_000_000) / 100_000;
+            int milesimas10 = (denominator % 100_000) / 10_000;
+            int milesimas = (denominator % 10_000) / 1_000;
             int mil100 = (milionesimas100 * 100) + (milionesimas10 * 10) + milionesimas;
-            if (milionesimas10 == 0 && milionesimas == 0 && milesimas100 == 0 && milesimas10 == 0 && milesimas == 0 && denom % 10 == 0 && denom % 100 == 0 && denom % 1_000 == 0 && denom % 10_000 == 0 && denom % 100_000 == 0) {
+            if (milionesimas10 == 0 && milionesimas == 0 && milesimas100 == 0 && milesimas10 == 0 && milesimas == 0 && denominator % 10 == 0 && denominator % 100 == 0 && denominator % 1_000 == 0 && denominator % 10_000 == 0 && denominator % 100_000 == 0) {
                 String sufijo = "èsim";
                 if (num > 1) sufijo += "s";
                 return numTill999(mil100) + " milion" + sufijo;
@@ -397,69 +396,69 @@ public class Fractions {
         }
         return "";
     }
-    public static String crear99s(int num, int denom) {
+    public static String crear99s(int num, int denominator) {
         String separador = "-";
-        if (denom < 30) {
+        if (denominator < 30) {
             separador += "i-";
         }
-        int decenes = denom / 10;
-        int unitats = denom % 10;
+        int decenes = denominator / 10;
+        int unitats = denominator % 10;
         if (decenes == 0 || unitats == 0) {
             separador = "";
         }
         if (unitats > 0 && num == 1) {
-            return denomDecenesPlural(decenes) + separador + residuoDecenesSingular(unitats);
+            return denominadorHundredsPlural(decenes) + separador + remainderTensSingular(unitats);
         } else if (unitats > 0 && num > 1) {
-            return denomDecenesPlural(decenes) + separador + residuoDecenesPlural(unitats);
+            return denominadorHundredsPlural(decenes) + separador + residueDesenesPlural(unitats);
         } else {
-            return denomDecenes(decenes);
+            return DenominatorTens(decenes);
         }
     }
-    public static String crear999s(int num, int denom) {
-        if (denom <= 99) return crear99s(num, denom);
-        int centenes = denom / 100;
-        int decenes = denom % 100;
+    public static String crear999s(int num, int denominator) {
+        if (denominator <= 99) return crear99s(num, denominator);
+        int centenes = denominator / 100;
+        int decenes = denominator % 100;
         String separador = " ";
 
         if (centenes == 0) {
             separador = "";
         }
         if (decenes > 0 && num == 1) {
-            return numsEsims(centenes, denom) + separador + crear99s(num, decenes);
+            return numsEsims(centenes, denominator) + separador + crear99s(num, decenes);
         } else if (decenes > 0 && num > 1) {
-            return numsEsims(centenes, denom) + separador + crear99s(num, decenes);
+            return numsEsims(centenes, denominator) + separador + crear99s(num, decenes);
         } else {
-            return numsEsims(centenes, denom);
+            return numsEsims(centenes, denominator);
         }
     }
 
-    public static String crear9999s(int num, int denom) {
-        if (denom <= 999) return crear999s(num, denom);
-        int centenes = denom % 1_000;
+    public static String crear9999s(int num, int denominator) {
+        if (denominator <= 999) return crear999s(num, denominator);
+        int centenes = denominator % 1_000;
 
         if (centenes > 0 && num == 1) {
-            return numsEsims(num, denom) + " " + crear999s(num, centenes);
+            return numsEsims(num, denominator) + " " + crear999s(num, centenes);
         } else if (centenes > 0 && num > 1) {
-            return numsEsims(num, denom) + " " + crear999s(num, centenes);
+            return numsEsims(num, denominator) + " " + crear999s(num, centenes);
         } else {
-            return numsEsims(num, denom);
+            return numsEsims(num, denominator);
         }
     }
 
-    public static String crearMs(int num, int denom) {
-        int milesimas = denom % 1_000_000;
+    public static String crearMs(int num, int denominator) {
+        int milesimas = denominator % 1_000_000;
 
         if (milesimas > 0 && num == 1) {
-            return numsEsims(num, denom) + " " + crear9999s(num, milesimas);
+            return numsEsims(num, denominator) + " " + crear9999s(num, milesimas);
         } else if (milesimas > 0 && num > 1) {
-            return numsEsims(num, denom) + " " + crear9999s(num, milesimas);
+            return numsEsims(num, denominator) + " " + crear9999s(num, milesimas);
         } else {
-            return numsEsims(num, denom);
+            return numsEsims(num, denominator);
         }
     }
     public static String numTill99(int num) {
         if (num <= 19) {
-            return numTill20(num);
+            return numUntill20(num);
         }
         String separador = "-";
         if (num < 30) {
@@ -470,7 +469,7 @@ public class Fractions {
         if (unitats == 0) {
             separador = "";
         }
-        return numDecenes(decenes) + separador + numUnitats(unitats);
+        return numTens(decenes) + separador + numUnits(unitats);
     }
     public static String numTill999(int num) {
         if (num <= 99) {
@@ -481,9 +480,9 @@ public class Fractions {
         int decenas = num % 100;
         int unitats = num % 10;
 
-        if (decenas <= 9 && unitats == 0) { // El residuo del num sea menor o igual a nueve
-            separador = "";                    // y las unidades tmb son 0, no hya separador.
-        }                                      // (decenas y unidades)
+        if (decenas <= 9 && unitats == 0) {
+            separador = "";
+        }
         return numCentenas(centenas) + separador + numTill99(decenas);
     }
     public static String numTill9999(int num) {
@@ -526,9 +525,9 @@ public class Fractions {
         String mcien = numTill999(M100);
         return mcien + " miliò" + separador + numTill9999(milcien);
     }
-    public static int parteFraccional(int num, int denom) {
-        while (num >= denom) {
-            num -= denom;
+    public static int partFranctional(int num, int denominator) {
+        while (num >= denominator) {
+            num -= denominator;
         }
         return num;
     }
