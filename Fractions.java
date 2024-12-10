@@ -5,30 +5,30 @@ public class Fractions {
     public static String toWords(String s) {
         String[] parts = s.split("/");
         int num = Integer.parseInt(parts[0]);
-        int denom = Integer.parseInt(parts[1]);
+        int denominator = Integer.parseInt(parts[1]);
         String res;
-        if (num >= denom) {
-            int resto = num / denom;
-            int fract = partFranctional(num, denom);
+        if (num >= denominator) {
+            int rest = num / denominator;
+            int fract = partFranctional(num, denominator);
             if (fract == 0) {
-                return numTillM(resto);
+                return numTillM(rest);
             }
-            res = numTillM(resto) + ", " + toWords(fract + "/" + denom).toLowerCase();
+            res = numTillM(rest) + ", " + toWords(fract + "/" + denominator).toLowerCase();
         } else {
             if (num < 1) {
                 res = "zero";
-            } else if (num == 1 && denom <= 19) {
-                res = numTill999(num) + " " + denominatorUntill20(denom);
-            } else if (denom <= 19) {
-                res = numTill999(num) + " " + denominatorPluralUnTill20(denom);
-            } else if (denom <= 99) {
-                res = numTill999(num) + " " + crear99s(num, denom);
-            } else if (denom <= 999) {
-                res = numTill999(num) + " " + crear999s(num, denom);
-            } else if (denom <= 999_999) {
-                res = numTill9999(num) + " " + crear9999s(num, denom);
-            } else if (denom <= 999_999_999) {
-                res = numTillM(num) + " " + crearMs(num, denom);
+            } else if (num == 1 && denominator <= 19) {
+                res = numTill999(num) + " " + denominatorUntill20(denominator);
+            } else if (denominator <= 19) {
+                res = numTill999(num) + " " + denominatorPluralUnTill20(denominator);
+            } else if (denominator <= 99) {
+                res = numTill999(num) + " " + crear99s(num, denominator);
+            } else if (denominator <= 999) {
+                res = numTill999(num) + " " + crear999s(num, denominator);
+            } else if (denominator <= 999_999) {
+                res = numTill9999(num) + " " + crear9999s(num, denominator);
+            } else if (denominator <= 999_999_999) {
+                res = numTillM(num) + " " + crearMs(num, denominator);
             } else {
                 res = "No vàlid";
             }
