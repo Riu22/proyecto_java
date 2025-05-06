@@ -10,9 +10,11 @@ public class FractionsTest {
         assertEquals("Un onzè", Fractions.toWords("1/11"));
         assertEquals("Un dissetè", Fractions.toWords("1/17"));
         assertEquals("Un dècim", Fractions.toWords("1/10"));
+
         assertEquals("Tres cinquens", Fractions.toWords("3/5"));
         assertEquals("Vuit novens", Fractions.toWords("8/9"));
         assertEquals("Onze catorzens", Fractions.toWords("11/14"));
+        assertEquals("Disset divuitens", Fractions.toWords("17/18"));
         assertEquals("Set dècims", Fractions.toWords("7/10"));
     }
 
@@ -26,6 +28,7 @@ public class FractionsTest {
         assertEquals("Setze cinquanta-tresens", Fractions.toWords("16/53"));
         assertEquals("Un cinquanta-novè", Fractions.toWords("1/59"));
         assertEquals("Noranta-vuit noranta-novens", Fractions.toWords("98/99"));
+        assertEquals("Quaranta-quatre seixanta-tresens", Fractions.toWords("44/63"));
     }
 
     @Test
@@ -37,6 +40,7 @@ public class FractionsTest {
         assertEquals("Un dos-cents seixanta-cinquè", Fractions.toWords("1/265"));
         assertEquals("Seixanta-sis dos-cents seixanta-cinquens", Fractions.toWords("66/265"));
         assertEquals("Quatre-cents setanta-sis nou-cents noranta-novens", Fractions.toWords("476/999"));
+        assertEquals("Cinc-cents quaranta-tres nou-cents quaranta-vuitens", Fractions.toWords("543/948"));
     }
 
     @Test
@@ -49,6 +53,7 @@ public class FractionsTest {
         assertEquals("Un deu mil·lèsim", Fractions.toWords("1/10000"));
         assertEquals("Sis deu mil cent dècims", Fractions.toWords("6/10110"));
         assertEquals("Deu mil cinc-cents quaranta-tres seixanta-cinc mil vint-i-unens", Fractions.toWords("10543/65021"));
+        assertEquals("Seixanta-set mil quatre-cents trenta-dos vuitanta-quatre mil dos-cents onzens", Fractions.toWords("67432/84211"));
     }
 
     @Test
@@ -59,7 +64,10 @@ public class FractionsTest {
         assertEquals("Dos milió unens", Fractions.toWords("2/1000001"));
         assertEquals("Tres dos milions tresens", Fractions.toWords("3/2000003"));
         assertEquals("Un milió mil·lèsim", Fractions.toWords("1/1001000"));
-        assertEquals("Cinc-cents quaranta-tres mil nou-cents seixanta-cinc sis milions cinc-cents quaranta-tres mil nou-cents vint-i-unens", Fractions.toWords("543965/6543921"));
+        assertEquals("Cinc-cents quaranta-tres mil nou-cents seixanta-cinc sis milions cinc-cents quaranta-tres mil nou-cents vint-i-unens",
+                Fractions.toWords("543965/6543921"));
+        assertEquals("Un milió dos-cents trenta-quatre mil cinc-cents seixanta-set dotze milions tres-cents quaranta-cinc mil sis-cents setanta-vuitens",
+                Fractions.toWords("1234567/12345678"));
     }
 
     @Test
@@ -71,5 +79,7 @@ public class FractionsTest {
         assertEquals("Un", Fractions.toWords("1000/1000"));
         assertEquals("Set-cents dos, tres-cents cinquanta-nou sis-cents cinquanta-tresens",
                 Fractions.toWords("458765/653"));
+        assertEquals("Cent dos milions vuit-cents vuitanta mil sis-cents cinquanta-set, sis dotzens",
+                Fractions.toWords("1234567890/12"));
     }
 }
